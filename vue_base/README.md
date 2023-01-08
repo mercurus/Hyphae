@@ -23,6 +23,7 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+test
 
 // "eslint-config-prettier": "^8.3.0",
 // "eslint-plugin-prettier": "^4.0.0",

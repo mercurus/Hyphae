@@ -5,6 +5,7 @@
         iconPrefix?: string;
         extraClasses?: string;
     }>();
+    //yes
 </script>
 
 <template>
