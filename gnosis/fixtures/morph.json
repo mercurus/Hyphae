@@ -1,0 +1,99 @@
+[
+    {
+        "model": "gnosis.morph",
+        "pk": 1,
+        "fields": {
+            "name": "Something",
+            "icon": "question-circle",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 2,
+        "fields": {
+            "name": "Person",
+            "icon": "user",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 3,
+        "fields": {
+            "name": "Guild",
+            "icon": "users",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 4,
+        "fields": {
+            "name": "Organism",
+            "icon": "crow",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 5,
+        "fields": {
+            "name": "Plant",
+            "icon": "seedling",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 6,
+        "fields": {
+            "name": "Chemical",
+            "icon": "atom",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 7,
+        "fields": {
+            "name": "Phenomenon",
+            "icon": "cloud-moon",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 8,
+        "fields": {
+            "name": "Practice",
+            "icon": "heartbeat",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 9,
+        "fields": {
+            "name": "Idea",
+            "icon": "lightbulb",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 10,
+        "fields": {
+            "name": "Tool",
+            "icon": "tools",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 11,
+        "fields": {
+            "name": "Book",
+            "icon": "book",
+            "json_data": {}
+        }
+    },{
+        "model": "gnosis.morph",
+        "pk": 12,
+        "fields": {
+            "name": "Nutrient",
+            "icon": "carrot",
+            "json_data": {}
+        }
+    }
+]

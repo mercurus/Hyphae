@@ -1,0 +1,195 @@
+{% extends 'gnosis/base_old.html' %}
+{% load template_utilities %}
+{% load render_bundle from webpack_loader %}
+{% block title %}Morph Edit{% endblock %}
+
+{% block content %}
+<div id="vueapp">
+    
+<form method="post">
+    <h1 class="title">{% icon icon_morph 'mr-5' %}Morph Edit</h1>
+    {% csrf_token %}
+    <table class="table has-background-accent has-text-primary">
+        <tbody>
+            <tr>
+                <td><span>ID</span></td>
+                <td>{{ object.id }}</td>
+            </tr>
+            <tr>
+                <td><span>Name</span></td>
+                <td>{% input form.name %}</td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Icon</span>
+                    <span class="icon is-size-4 ml-3 has-text-primary"><i id="icon_display" class="{{ form.icon.value }}"></i></span>
+                </td>
+                <td>{% input form.icon %}</td>
+            </tr>
+            <tr>
+                <td><span>Custom Fields</span></td>
+                <td><button id="new_field_btn" type='button' class="button is-small" @click="new_field">New</button></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr v-for="(v, k) in morph_json.fields" :key="k">
+                <td>Property</td>
+                <td>
+                    <input type="text" :value="k" />
+                    <select name="" id="" :value="v.type">
+                        <option value="text">Text</option>
+                        <option value="big_text">Big Text</option>
+                        <option value="number">Number</option>
+                        <option value="date">Date</option>
+                    </select>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <button type="submit" class="button">{% icon icon_check 'mr-4' %}Save</button>
+</form>
+</div>
+{{ form.errors }}
+
+{% endblock %}
+
+{# <script> #}
+{% block vue_methods %} 
+    new_field() {
+        // this.$set(this.someObject, 'b', 2)
+        this.$set(this.morph_json.fields, "new_field" + this.c, { "type":"big_text" });
+        console.log(this.morph_json);
+        this.c++;
+    },
+{% endblock %}
+
+{% block vue_data %}
+    // morph_json: {{ form.json_data.value|safe|default:'{ "fields":{ "yah": "nah"} }' }},
+    morph_json: { "fields":{ "first field": { "type":"number"} } },
+    field_types: ['text', 'big_text', 'number', 'date'],
+    c: 0,
+{% endblock %} 
+{# </script> #}
+
+{% comment %}
+{% block script %}
+<script>
+    $(document).ready(function() {
+        let json_data_initial = {{ form.json_data.value|safe|default:'{}' }};
+
+        if (json_data_initial.fields) {
+            for (let field of json_data_initial.fields) {
+                add_row(field.name, field.type);
+            }
+        }
+
+        $("#new_field_btn").on("click", function() {
+            add_row("new field", "text");
+            return false;
+        });
+
+        $("#id_icon").on("change keyup paste", function() {
+            let text = $(this).val();
+            let current_class = $("#icon_display")[0].classList.value;
+            $("#icon_display").removeClass(current_class).addClass("fa fa-" + text);
+            // console.log(current_class);
+        });
+
+        $("form[method=post]").submit(function() {
+            //gather the model
+            let template = {"fields": []};
+            $(".table tfoot tr").each(function() {
+                let name = $(this).find(".name_text").val();
+                let type = $(this).find(".type_dropdown option:selected").text();
+                template.fields.push({"name": name, "type": type});
+            });
+
+            $("#json_data").val(JSON.stringify(template));
+            // return false;
+        });
+    });
+
+
+    function add_row(name="field", type="text") {
+        let table = ".table tfoot";
+
+        //build the individual topics
+        let text = $("<input type='text' class='name_text' value='" + name + "' size='8' required />");
+
+        let dropdown = 
+        $("<select class='type_dropdown'></select>")
+        {% for type in field_types %}
+            .append("<option>{{ type }}</option>")
+        {% endfor %}
+        .val(type);
+
+        // let move_down = 
+        // $("<button type='button' class='button is-info is-small has-text-weight-bold'>V</button>")
+        // .on("click", function() {
+        //     let row = $(this).closest("tr");
+        //     let id = $(row).data("row-id");
+        //     console.log(id);
+        //     let row_found = false;
+        //     let row_below = $(table).find("tr").filter(function() { 
+        //         return $(this).data("row-id") == id + 1; 
+        //     });
+        //     //if there is no row above, leave
+        //     if (row_below.length == 0) return;
+        //     //otherwise shuffle these two around
+        //     $(row_below).data("row-id", id);
+        //     $(row).data("row-id", id + 1).insertAfter(row_below);
+        //     let f = json_data.fields;
+        //     f[id + 1] = f.splice(id, 1, f[id + 1])[0];
+        //     return false;
+        // });
+
+        let remove = 
+        $("<button type='button' class='button is-danger is-small has-text-weight-bold p-1'>X</button>")
+        .on("click", function() {
+            let id = $(this).closest("tr").remove();
+            return false;
+
+            // let id = $(this).closest("tr").data("row-id");
+            // // console.log(id);
+            // $(table).find("tr[data-row-id=" + id + "]").remove();
+            // $(table).find("tr").filter(function() {
+            //     return $(this).data("row-id") > id;
+            // })
+            // .each(function() {
+            //     let my_id = $(this).data("row-id");
+            //     $(this).data("row-id",  my_id - 1);
+            //     // console.log(my_id);
+            // });
+            // json_data.fields.splice(id, 1);
+            // console.log(json_data.fields);
+        });
+
+        let td =
+        $("<td></td>")
+        .append(dropdown)
+        .append(text)
+        // .append(move_down)
+        .append(remove);
+
+
+        //if we don't have the row_id then add it to the main object
+        // if (row_id == null || !(row_id >= 0)) {
+        //     row_id = json_data.fields.length;
+        //     json_data.fields.push({
+        //         "name": name,
+        //         "type": type
+        //     });
+        // }
+        
+        //now put it all together
+        // $("<tr data-row-id='" + row_id + "'></tr>")
+        $("<tr></tr>")
+        .append("<td class='has-text-primary'>Property</td>")
+        .append(td)
+        .appendTo(table);
+
+        
+    }
+</script>
+{% endblock %}
+{% endcomment %}

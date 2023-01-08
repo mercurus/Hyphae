@@ -1,0 +1,251 @@
+{% extends 'gnosis/base_old.html' %}
+{% load template_utilities static %}
+{% block title %}Topic Details{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="card has-background-primary-light">
+        <div class="card-header has-background-accent">
+            <div class="card-header-title">
+                <span class="title has-text-primary  is-small">
+                    {% icon icon_topic 'mr-4' %}
+                    Topic Details
+                </span>
+            </div>
+            <div class="is-pulled-right has-text-primary mr-4">
+                <a href="{% url 'gnosis:topic_details' pk=object.id %}">
+                    #{{ object.id }}
+                </a>
+            </div>
+        </div>
+        <div class="card-content has-text-primary-dark">
+            <div class="block">
+                Name: {% input form.name %}
+            </div>
+            <div class="block">
+                Icon: {% input form.icon %}
+                <span class="icon is-size-2 ml-3 has-text-primary"><i id="icon_display" class="fa fa-{{ form.icon.value }}"></i></span>
+            </div>
+            <div class="block">
+                <!-- <input type="hidden" name="morph" value="{{ object.morph.id }}" /> -->
+                Morph: 
+                <select name="morph">
+                    {% for morph in morph_list %}
+                        <option value="{{ morph.id }}" {% if morph.id == object.morph.id %}selected{% endif %}>{{ morph.name }}</option>
+                    {% endfor %}
+                </select>
+                <a href="{% url 'gnosis:morph_edit' pk=object.morph.id %}">
+                    <span class="icon is-size-2 has-text-primary my-3 mx-3"><i class="fa fa-{{ object.morph.icon }}"></i></span>
+                    <!-- <span class="is-inline">{{ object.morph.name }}</span> -->
+                </a>
+            </div>
+            {% for field in object.morph.json_data.fields %}
+                <div class="block custom-field" data-name="{{ field.name }}">
+                    <span title="{{ field.type }}">{{ field.name }}: </span>
+                    {% if field.type == 'long text' %}
+                        <textarea class="textarea">{{ object.json_data|hash:field.name }}</textarea>
+                    {% else %}
+                        <input type="{{ field.type }}" value="{% if object.json_data %}{{ object.json_data|hash:field.name }}{% endif %}" />
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="block">
+                <span class="has-text-weight-bold">Related topics</span>
+                <br>
+                {% icon icon_folk %}<span>Folks </span><input type="radio" name="related_type" value="folk" id="folk_radio" class="mr-2" />
+                {% icon icon_topic %}<span>Topics </span><input type="radio" name="related_type" value="topic" id="topic_radio" class="mr-2" checked />
+                {% icon icon_note %}<span>Notes </span><input type="radio" name="related_type" value="note" id="note_radio" class="mr-2" />
+                <br>
+                <input type="text" id="related_input" autocomplete="on" list="related_datalist" />
+                <datalist id="related_datalist"></datalist>
+                <button type="button" class="is-primary is-small" id="add_topic">Add</button>
+            </div>
+            <div class="block">
+                <div id="related_folks">
+                    {% icon icon_folk %}
+                    {% for r in related_folks %}
+                        <span class="tag is-accent has-text-primary" id="folk{{ r.id }}">
+                            <span class="icon is-small"><i class="fa fa-{% if r.icon %}{{ r.icon }}{% else %}{{ r.morph.icon }}{% endif %}"></i></span>
+                            {{ r.name }}
+                            <a href="javascript:unrelate('folk', {{ r.id }})">
+                                <span class="icon is-small ml-1"><i class="fas fa-times-circle"></i></span>
+                            </a>
+                        </span>
+                    {% endfor %}
+                </div>
+                <div id="related_topics">
+                    {% icon icon_topic %}
+                    {% for r in related_topics %}
+                        <span class="tag is-accent has-text-primary" id="topic{{ r.id }}">
+                            <span class="icon is-small"><i class="fa fa-{% if r.icon %}{{ r.icon }}{% else %}{{ r.morph.icon }}{% endif %}"></i></span>
+                            {{ r.name }}
+                            <a href="javascript:unrelate('topic', {{ r.id }})">
+                                <span class="icon is-small ml-1"><i class="fas fa-times-circle"></i></span>
+                            </a>
+                        </span>
+                    {% endfor %}
+                </div>
+                <div id="related_notes">
+                    {% icon icon_note %}
+                    {% for r in related_notes %}
+                        <span class="tag is-accent has-text-primary" id="note{{ r.id }}">
+                            <span class="icon is-small"><i class="fa fa-{% if r.icon %}{{ r.icon }}{% else %}{{ r.morph.icon }}{% endif %}"></i></span>
+                            {{ r.name }}
+                            <a href="javascript:unrelate('note', {{ r.id }})">
+                                <span class="icon is-small ml-1"><i class="fas fa-times-circle"></i></span>
+                            </a>
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+            <input type="hidden" id="json_data" name="json_data" value="" >
+            <button type="submit" class="button">{% icon icon_check 'mr-4' %}Save</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block script %}
+<script>
+    const topic_type = "{{ topic|lower }}", topic_id = {{ object.id }};
+    let all_topics = {}, searched_topics = [];
+
+    $(document).ready(function() {
+        $("form[method=post]").submit(function() {
+            //gather the model
+            let obj = {};
+            $(".custom-field").each(function() {
+                let name = $(this).data("name");
+                let value = $(this).find("input[type=text]").val();
+                if (!value) value = $(this).find("textarea").val();
+                obj[name] = value;
+            });
+
+            $("#json_data").val(JSON.stringify(obj));
+            // return false;
+        });
+
+
+        $("#id_icon").on("change keyup paste", function() {
+            let text = $(this).val();
+            let current_class = $("#icon_display").prop("classList");
+            $("#icon_display").removeClass(current_class).addClass("fa fa-" + text);
+        });
+
+
+        $("input[name=related_type]").on("change", function() {
+            //we have to clear these because ids could be the same from other tables (folk, topic, note)
+            all_topics = {};
+            searched_topics = [];
+        });
+
+        {% comment %}
+
+        $("#related_input").on("change keyup paste", function() {
+            let text = $(this).val();
+            if (text.length < 3) return;
+            let three = text.substring(0, 3);
+
+            //check if it's already been searched
+            if (searched_topics.filter(e => e == three).length > 0) return;
+            searched_topics.push(three);
+            // console.log(three);  
+
+            $.ajax({
+                url: "{% url 'gnosis:catalog' %}",
+                type: "GET",
+                dataType: "json",
+                data: {
+                    "name": three, 
+                    "topic": $("input[name=related_type]:checked").val(),
+                },
+                success: function(response) {
+                    for (let record of response["catalog"]) {
+                        //if it doesn't already exist, add it in
+                        if (!all_topics[record.id]) {
+                            all_topics[record.id] = record;
+                            $("#related_datalist").append(`<option value='${record.id}'>${record.name}</option>`);
+                            $("#related_input").trigger("change");
+                            // console.log("Added " + record.name);
+                        }
+                    }
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+
+
+        $("#add_topic").on("click", function() {
+            let id = $("#related_input").val();
+            let related_type = $("input[name=related_type]:checked").val();
+            if (all_topics[id]) {
+                $.ajax({
+                    url: "{% url 'gnosis:relate' %}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        "topic": topic_type,
+                        "topic_id": topic_id,
+                        "related": related_type,
+                        "related_id": id, 
+                    },
+                    success: function(response) {
+                        let record = all_topics[id];
+                        let tag = $(`<span class='tag is-accent has-text-primary' id='${related_type}${record.id}'></span>`)
+                        .append(`<span class='icon is-small'><i class='fa fa-${record.icon}'></i></span>`)
+                        .append(`<span>${record.name}</span>`)
+                        .append(
+                            $(`<a href="javascript:unrelate('${related_type}', ${record.id})"></a>`)
+                            .append(`<span class="icon is-small ml-1"><i class="fas fa-times-circle"></i></span>`)
+                        );
+
+                        if (related_type == "folk") $("#related_folks").append(tag);
+                        else if (related_type == "topic") $("#related_topics").append(tag);
+                        else $("#related_notes").append(tag);
+                    },
+                    error: function(response) {
+                        toast("error", response["message"]);
+                        console.log(response);
+                    }
+                });
+            }
+            else {
+                toast("error", "Record not found");
+            }
+
+            $("#related_input").val(""); //clear text
+        });
+
+    {% endcomment %}
+    }); //end doc ready
+
+
+    {% comment %}
+    function unrelate(related_type, id) {
+        $.ajax({
+            url: "{% url 'gnosis:unrelate' %}",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "topic": topic_type,
+                "topic_id": topic_id,
+                "related": related_type,
+                "related_id": id, 
+            },
+            success: function(response) {
+                $(`#${related_type}${id}`).remove();
+            },
+            error: function(response) {
+                toast("error", response["message"]);
+                console.log(response);
+            }
+        });
+    }
+    {% endcomment %}
+
+</script>
+{% endblock %}

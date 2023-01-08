@@ -1,0 +1,17 @@
+{% extends 'hyphae_base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block navbar_items %}{% endblock %}
+
+{% block content %}
+    <h4>Login</h4>
+    <form method="post">
+        {% csrf_token %}
+        Username: <input type="text" name="username">
+        <br>
+        Password <input type="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+    <br><br>
+    {# <q-btn type="a" label="Google" icon="login" color="primary" href="{% url 'social:begin' 'google-oauth2' %}"></q-btn> #}
+{% endblock %}

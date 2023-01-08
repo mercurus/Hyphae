@@ -1,0 +1,573 @@
+[
+    {
+        "model": "gnosis.topic",
+        "pk": 1,
+        "fields": {
+            "name": "Nature",
+            "icon": "cloud-sun-rain",
+            "morph_id": 7,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 2,
+        "fields": {
+            "name": "Art",
+            "icon": "icons",
+            "morph_id": 9,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 3,
+        "fields": {
+            "name": "Philosophy",
+            "icon": "university",
+            "morph_id": 9,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 4,
+        "fields": {
+            "name": "Science",
+            "icon": "microscope",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 5,
+        "fields": {
+            "name": "Exercise",
+            "icon": "running",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 6,
+        "fields": {
+            "name": "Agriculture",
+            "icon": "pepper-hot",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 7,
+        "fields": {
+            "name": "Agroforestry",
+            "icon": "tree",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 8,
+        "fields": {
+            "name": "Alley Cropping",
+            "icon": "tree",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 9,
+        "fields": {
+            "name": "Biodiversity",
+            "icon": "stroopwafel",
+            "morph_id": 7,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 10,
+        "fields": {
+            "name": "Climate Change",
+            "icon": "poo-storm",
+            "morph_id": 7,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 11,
+        "fields": {
+            "name": "Community Supported Agriculture (CSA)",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 12,
+        "fields": {
+            "name": "Composting",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 13,
+        "fields": {
+            "name": "Conservation",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 14,
+        "fields": {
+            "name": "Contour Farming",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 15,
+        "fields": {
+            "name": "Cover Cropping",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 16,
+        "fields": {
+            "name": "Farmers Market",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 17,
+        "fields": {
+            "name": "Food Cooperative",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 18,
+        "fields": {
+            "name": "Forest Farming",
+            "icon": "tree",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 19,
+        "fields": {
+            "name": "Fungi",
+            "icon": "spider",
+            "morph_id": 4,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 20,
+        "fields": {
+            "name": "Green Energy",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 21,
+        "fields": {
+            "name": "Green Manure",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 22,
+        "fields": {
+            "name": "Horticulture",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 23,
+        "fields": {
+            "name": "Hydroponics",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 24,
+        "fields": {
+            "name": "Managed Grazing",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 25,
+        "fields": {
+            "name": "Mulching",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 26,
+        "fields": {
+            "name": "No-Till Farming",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 27,
+        "fields": {
+            "name": "Nutrient Management",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 28,
+        "fields": {
+            "name": "Organic Farming",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 29,
+        "fields": {
+            "name": "Permaculture",
+            "icon": "leaf",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 30,
+        "fields": {
+            "name": "Pruning",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 31,
+        "fields": {
+            "name": "Regenerative Agriculture",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 32,
+        "fields": {
+            "name": "Riparian Forest Buffers",
+            "icon": "tree",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 33,
+        "fields": {
+            "name": "Silvopasture",
+            "icon": "tree",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 34,
+        "fields": {
+            "name": "Soil Science",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 35,
+        "fields": {
+            "name": "Sustainable Agriculture",
+            "icon": "",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 36,
+        "fields": {
+            "name": "Windbreaks",
+            "icon": "tree",
+            "morph_id": 8,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 37,
+        "fields": {
+            "name": "Ryan Hunt",
+            "icon": "user-astronaut",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 38,
+        "fields": {
+            "name": "Alan Watts",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 39,
+        "fields": {
+            "name": "Betty Kovacs",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 40,
+        "fields": {
+            "name": "Bruce Damer",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 41,
+        "fields": {
+            "name": "Dennis McKenna",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 42,
+        "fields": {
+            "name": "Erik Davis",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 43,
+        "fields": {
+            "name": "Gary Lachman",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 44,
+        "fields": {
+            "name": "Jeffrey Kripal",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 45,
+        "fields": {
+            "name": "Jeffrey Mishlove",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 46,
+        "fields": {
+            "name": "Joel Salatin",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 47,
+        "fields": {
+            "name": "Joseph Campbell",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 48,
+        "fields": {
+            "name": "Lynne McTaggart",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 49,
+        "fields": {
+            "name": "Marjorie Woollacott",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 50,
+        "fields": {
+            "name": "Mark Vernon",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 51,
+        "fields": {
+            "name": "Marshall McLuhan",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 52,
+        "fields": {
+            "name": "Mitch Horowitz",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 53,
+        "fields": {
+            "name": "Owen Barfield",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 54,
+        "fields": {
+            "name": "Paul Stamets",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 55,
+        "fields": {
+            "name": "Rhonda Patrick",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 56,
+        "fields": {
+            "name": "Rupert Sheldrake",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    },{
+        "model": "gnosis.topic",
+        "pk": 57,
+        "fields": {
+            "name": "Terence McKenna",
+            "icon": "",
+            "morph_id": 2,
+            "json_data": {},
+            "created_date": "2023-01-01"
+        }
+    }
+]

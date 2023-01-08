@@ -1,0 +1,27 @@
+{% extends 'gnosis/base.html' %}
+{% load render_bundle from webpack_loader %}
+{% block title %}Morph Edit{% endblock %}
+
+{% block content %}
+    {{ form.initial }}
+    <div id="app">
+        <MorphEditRoot>
+            <slot>
+                <MorphEdit>
+                    <!-- <slot>
+                        <span>asdf2M</span>
+                    </slot> -->
+                </MorphEdit>
+            </slot>
+        </MorphEditRoot>
+    </div>
+    <!-- <template v-slot>
+        <span>{{ form.initial }}</span>
+        {% csrf_token %}
+    </template> -->
+{% endblock %}
+
+{% block webpack %}
+    {% render_bundle 'chunk-common' %}
+    {% render_bundle 'morph-edit' %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'gnosis/base.html' %}
+{% load render_bundle from webpack_loader %}
+{% block title %}Topic Search{% endblock %}
+
+{% block content %}
+    <topic-search 
+        subject="{{ form.initial }}" 
+        results="{{ results }}"
+        morphs="{{ morphs }}"
+    >
+        {% csrf_token %}
+    </topic-search>
+{% endblock %}
+
+{% block webpack %}
+    {% render_bundle 'chunk-common' %}
+    {% render_bundle 'chunk-state' %}
+    {% render_bundle 'topic-search' %}
+{% endblock %}

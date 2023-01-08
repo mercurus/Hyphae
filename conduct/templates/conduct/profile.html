@@ -1,0 +1,23 @@
+{% extends 'hyphae_base.html' %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h4>
+            <span class="icon is-size-2 mt-3 mx-3">
+                <i class="
+                    {% if folk.icon %}
+                        {{ folk.icon }}
+                    {% else %}
+                        {{ folk.morph.icon }}
+                    {% endif %}
+                "></i>
+            </span>
+            {{ user.email }}
+        </h4>
+        <p>sudo: {{ user.is_superuser }}</p>
+        <p>name: {{ folk.name }}</p>
+        <p>morph: {{ folk.morph }}</p>
+        <p>json: {{ folk.json }}</p>
+    </div>
+{% endblock %}

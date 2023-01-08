@@ -1,0 +1,138 @@
+{% extends 'gnosis/base_old.html' %}
+{% load template_utilities %}
+{% block title %}Topic Search{% endblock %}
+
+{% block content %}
+
+<form id="search_form" method="get">
+    <div class="card has-background-accent">
+        <div class="card-header has-background-primary">
+            <span class="title has-text-accent p-1 pl-4">{% icon icon_topic 'mr-5' %}Topic Search</span>
+        </div>
+        <div class="card-content has-text-centered">
+            <div class="content">
+                {% if topic == 'Morph' %}
+                    <div class="field is-inline-block">
+                        <label class="label has-text-left mb-0">Name</label>
+                        <div class="control has-icons-left">
+                            {% input form.name class='input' style='width: 500px' autofocus= %}
+                            {% icon icon_morph 'is-small is-left' %}
+                        </div>
+                    </div>
+                    {% comment %}
+                    <div class="level has-text-dark">
+                        <div class="level-item">
+                            {% icon icon_folk %} Folks {% input form.for_folks value=1 class='checkbox' %}
+                        </div>
+                        <div class="level-item">
+                            {% icon icon_topic %} Topics {% input form.for_topics value=1 %}
+                        </div>
+                        <div class="level-item">
+                            {% icon icon_note %} Notes {% input form.for_notes value=1 %}
+                        </div>
+                    </div>
+                    {% endcomment %}
+                {% else %}
+                    <div class="field is-inline-block">
+                        <label class="label has-text-left has-text-primary mb-0">Name</label>
+                        <div class="control has-icons-left">
+                            {% input form.name class='input has-text-primary' style='width: 500px' autofocus= %}
+                            {% icon 'fa fa-face-laugh" id="search_icon' 'is-left' %}
+                            <!-- <span class="icon is-small is-left">
+                                <i class="fa fa-font"></i>
+                            </span> -->
+                        </div>
+                    </div>
+                    <div class="field is-inline-block">
+                        <label class="label has-text-left has-text-primary mb-0">Morph</label>
+                        <div class="control has-icons-left">
+                            <div class="select">
+                                <select name="morph" style="width: 250px" class="select has-text-primary">
+                                    <option></option>
+                                    {% for m in morphs %}
+                                        <option {% if form.morph.value|add:'0' == m.id %}selected{% endif %}
+                                        value="{{ m.id }}">{{ m.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-puzzle-piece"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="block">
+                <button type="submit" class="button is-primary">{% icon icon_search 'mr-3' %}Search</button>
+                <a class="button is-primary" href="{% url 'gnosis:topic_create' morph_id=1 %}">Create new Topic</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="columns is-multiline mt-3">
+    {% for obj in object_list %}
+        <div class="column is-one-third py-0">
+            {% if topic == 'Morph' %}
+                <a href="{% url 'gnosis:morph_edit' pk=obj.id %}">
+                    <div class="media search-result">
+                        <div class="media-left search-icon-block">
+                            {% icon obj.icon 'is-size-2 mt-3 mx-3' %}
+                            <br>
+                            <span class="is-size-7 has-text-weight-bold">{{ obj.name }}</span>
+                        </div>
+                        <div class="media-content">
+                            <div class="is-flex">
+                                <span class="has-text-weight-bold is-flex-grow-1">{{ obj.name }}</span>
+                                <div class="has-text-dark pr-1 is-size-6">
+                                    <!-- <span class="m-0">#{{ obj.id }}</span> -->
+                                    {% icon icon_morph %}
+                                </div>
+                            </div>
+                            <div class="has-text-light is-size-7 pr-2">Lorem ipsum dolor sit amet, consec tetur adipis icing, elit . . . .</div>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'gnosis:topic_details' pk=obj.id %}">
+                    <div class="media search-result">
+                        <div class="media-left search-icon-block">
+                            {% icon obj.icon|default:obj.morph.icon 'is-size-2 mt-3 mx-3' %}
+                            <br>
+                            <span class="is-size-7 has-text-weight-bold">{{ obj.morph.name }}</span>
+                        </div>
+                        <div class="media-content">
+                            <div class="is-flex">
+                                <span class="has-text-weight-bold is-flex-grow-1">{{ obj.name }}</span>
+                                <div class="has-text-dark pr-1 is-size-6">
+                                    <!-- <span class="m-0">#{{ obj.id }}</span> -->
+                                    {% icon obj.morph.icon %}
+                                </div>
+                            </div>
+                            <div class="has-text-dark is-size-7 pr-2">Lorem ipsum dolor sit amet, consec tetur adipis . . . icing, e l i t . </div>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    let icons = ['face-laugh', 'robot', 'face-angry', 'skull', 'face-surprise', 'poo', 'face-sad-cry', 'ghost'];
+    let icon_index = 0;
+
+    function cycle_icon() {
+        if (++icon_index == icons.length) icon_index = 0;
+        $("#search_icon").removeClass().addClass(`fa fa-${icons[icon_index]}`);
+    }
+
+    (function() {
+        setInterval(cycle_icon, 2300);
+        {% include 'js/remove_required.snip.js' %}
+    })();
+</script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'gnosis/base.html' %}
+{% load template_utilities static %}
+{% block title %}Morph Search{% endblock %}
+
+{% block content %}
+<form method="get">
+    <div class="search-form card mb-3">
+        <div class="card-header has-background-grey has-text-centered">
+            <span class="title has-text-dark">{% include 'icons/morph.html' %} Morph Search</span>
+        </div>
+        <div class="card-content">
+            <div class="level">
+                <div class="level-item">
+                    {% input form.id placeholder='id' %}
+                    {% input form.name placeholder='name' %}
+                </div>
+            </div>
+            <div class="level has-text-dark">
+                <div class="level-item">
+                    {% include 'icons/folk.html' %} Folks {% input form.for_folks value=1 class='checkbox' %}
+                </div>
+                <div class="level-item">
+                    {% include 'icons/topic.html' %} Topics {% input form.for_topics value=1 %}
+                </div>
+                <!-- <div class="level-item">
+                    {% include 'icons/creation.html' %} Creations {% input form.for_creations value=1 %}
+                </div> -->
+                <div class="level-item">
+                    {% include 'icons/note.html' %} Notes {% input form.for_notes value=1 %}
+                </div>
+            </div>
+            <div class="level">
+                <div class="level-item">
+                    <button type="submit" class="button primary-button">{% include 'icons/search.html' %}Search</button>
+                    <a class="button primary-button" href="{% url 'gnosis:morph_create' %}">Create new Morph</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <hr/> -->
+<div class="columns is-multiline">
+    {% for obj in object_list %}
+        <div class="column is-one-third py-0">
+            <a href="{% url 'gnosis:morph_details' pk=obj.id %}">
+                <div class="media search-result">
+                    <div class="media-left search-icon-block">
+                        <span class="icon is-size-2 mt-3 mx-3"><i class="fa fa-{{ obj.icon }}"></i></span>
+                        <br>
+                        <span class="is-size-7 has-text-weight-bold">{{ obj.name }}</span>
+                    </div>
+                    <div class="media-content">
+                        {{ obj.name }}
+                        <br>
+                        <div class="level">
+                            <div class="level-item">{% if obj.for_folks %}{% include 'icons/folk.html' %}{% endif %}</div>
+                            <div class="level-item">{% if obj.for_topics %}{% include 'icons/topic.html' %}{% endif %}</div>
+                            <!-- <div class="level-item">{% if obj.for_creations %}{% include 'icons/creation.html' %}{% endif %}</div> -->
+                            <div class="level-item">{% if obj.for_notes %}{% include 'icons/note.html' %}{% endif %}</div>
+                        </div>
+                    </div>
+                    <div class="media-right has-text-dark pr-1">
+                        <span class="m-0">#{{ obj.id }}</span>
+                        {% include 'icons/morph.html' %}
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    (function() {
+        {% include 'js/remove_required.snip.js' %}
+    })();
+</script>
+{% endblock %}

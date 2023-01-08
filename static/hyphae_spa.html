@@ -1,0 +1,51 @@
+{% load static template_utilities %}
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hyphae - Creating knowledge from information">
+    <title>HYPHÆ</title> {# Hyphæ #}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- https://bulma.io/ w color scheme-->
+    <!-- <link rel="stylesheet" href="{% static 'css/bulma_coleus.css' %}?rnd={% random_int 200 %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/bulma_arcane.css' %}?rnd={% random_int 200 %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/bulma_molten.css' %}?rnd={% random_int 200 %}"> -->
+    <link rel="stylesheet" href="{% static 'css/bulma_undergrowth.css' %}?rnd={% random_int 200 %}">
+    
+    <!-- https://bulma-calendar.onrender.com/ -->
+    <script src="{% static 'js/bulma_calendar.min.js' %}"></script>
+</head>
+<body class="has-background-dark">
+    <noscript>
+        <strong>Without Javascript enabled this site isn't going to work at all for you...</strong>
+    </noscript>
+
+    <div id="app" class="sticky_footer_wrapper"></div>
+    {% render_bundle 'chunk-common' %}
+    {% render_bundle 'main' %}
+
+    <footer class="footer has-background-accent-light p-0">
+        <hr class="footer-line-4">
+        <hr class="footer-line-3">
+        <hr class="footer-line-2">
+        <hr class="footer-line-1">
+        <div class="has-text-centered py-2">
+            <span class="has-text-weight-light has-text-dark is-size-5">
+                <span class="icon">
+                    <i class="fa fa-sun"></i>
+                </span>
+                <br>
+                <span class="logo-font">HYPHÆ</span>
+            </span>
+        </div>
+        <hr class="footer-line-1">
+        <hr class="footer-line-2">
+        <hr class="footer-line-3">
+        <hr class="footer-line-4">
+    </footer>
+</body>
+</html>

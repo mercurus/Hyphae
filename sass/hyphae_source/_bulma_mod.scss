@@ -1,0 +1,250 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");
+@import url("https://fonts.googleapis.com/css?family=Righteous");
+
+// these colors are now set by the theme which then imports this file
+// $main-dark
+// $main
+// $main-light
+// $accent-dark
+// $accent
+// $accent-light
+// $lightest
+// $neutral
+// $alert
+
+//https://bulma.io/documentation/customize/variables/
+$family-sans-serif: "Ubuntu", sans-serif;
+$logo-font: "Righteous", "Ubuntu", sans-serif;
+
+$black: $main-dark; 
+$dark: $main-dark;
+$grey: $neutral;
+$white: $lightest;
+$light: $lightest;
+
+$primary: $main;
+$primary-light: $main-light;
+$primary-dark: $main-dark;
+$success: $accent-dark;
+$danger: $alert;
+// $warning: $accent;
+// $info: $accent-light;
+
+$link: $main;
+$link-hover: $main-light;
+$link-hover-border: $accent-light;
+
+$button-background-color: $accent;
+$button-color: $primary;
+// $button-text-color: $primary;
+$button-border-color: $accent-dark;
+
+// $button-text-hover-color: $primary-light;
+// $button-text-hover-background-color: $background
+$button-hover-color: $primary-light;
+$button-hover-border-color: $accent-light;
+
+// $button-static-color: $primary;
+// $button-static-background-color: $accent;
+
+$body-background-color: $main;
+$text: $accent-light;
+$text-strong: $accent-dark; 
+$text-invert: $lightest;
+
+$input-icon-active-color: $primary-light;
+
+$custom-colors: ("accent": ($accent, findColorInvert($accent), $accent-light, $accent-dark));
+//"primary": ($primary, $primary-invert, $primary-light, $primary-dark), 
+
+$card-radius: 12px;
+$nav-speed: 600ms;
+
+// $widescreen-enabled: false;
+// $fullhd-enabled: false;
+// $control-border-width: 2px;
+// $input-border-color: transparent;
+// $input-shadow: none;
+
+//https://stackoverflow.com/a/58452190
+.navbar-mainmenu {
+    color: $accent !important;
+    background-image: linear-gradient(to bottom right, $accent-light 50%, $main 0);
+    background-position: bottom right;
+    background-size: 200% 200%;
+    transition: all $nav-speed;
+    -webkit-transition: all $nav-speed;
+    -ms-transition: all $nav-speed;
+}
+
+.navbar-mainmenu:hover {
+    background-position: top left;
+    color: $accent-dark !important;
+}
+
+.primary-button {
+    color: $accent;
+    background-color: $main !important;
+    font-weight: bold;
+    margin-right: .5rem;
+    border: 0 !important;
+}
+
+.primary-button:hover {
+    color: $accent-light !important;
+}
+
+.search-result {
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    background-color: $main;
+
+    color: $accent-dark !important;
+    // background-image: linear-gradient(to right, $main-light 50%, $main 0);
+    background: linear-gradient($main-light, $main-light) no-repeat, $main;
+    // background-position: right;
+    // background-size: 200% 200%;
+
+    background-size: 95% 0%;
+    background-position: center;
+    transition-timing-function: ease-out;
+    transition: all $nav-speed;
+    -webkit-transition: all $nav-speed;
+    -ms-transition: all $nav-speed;
+}
+
+.search-result:hover {
+    background-size: 100% 100%;
+    // background-position: left;
+}
+
+.search-result:hover .search-icon-block {
+    background-size: 100% 100%;
+    // background-position: left;
+}
+
+.search-icon-block {
+    // background-color: $primary;
+    text-align: center;
+    width: 80px;
+    border-radius: 12px;
+    padding: 3px;
+    background: linear-gradient($accent-light, $accent-light) no-repeat, $accent;
+    background-position: right;
+    background-size: 85% 0%;
+    transition-timing-function: ease-out;
+    transition: all $nav-speed;
+    -webkit-transition: all $nav-speed;
+    -ms-transition: all $nav-speed;
+} 
+
+.search-icon-block:hover {
+    background-size: 100% 100%;
+    // background-position: left;
+}
+
+.search-icon-block > span {
+    color: $main !important;
+}
+
+.search-result > .media-content {
+    color: $accent-light;
+    // padding: 3px;
+}
+
+.logo-font {
+    font-family: $logo-font;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+//footer stuff
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.sticky_footer_wrapper {
+    flex: 1;
+}
+
+.footer-line-1, 
+.footer-line-2, 
+.footer-line-3, 
+.footer-line-4  {
+    background-color: $main-dark; 
+    width: 100%; 
+}
+
+.footer-line-1 { 
+    margin: 4px 0;
+    height: 1px;
+}
+
+.footer-line-2 { 
+    margin: 3px 0;
+    height: 2px;
+}
+
+.footer-line-3 { 
+    margin: 2px 0;
+    height: 3px;
+}
+
+.footer-line-4 {
+    margin: 1px 0;
+    height: 4px;
+}
+
+
+/* https://codepen.io/oliverjam/pen/KKzWJQM */
+#toaster {
+    --offset: 2rem;
+    position: fixed;
+    left: 0;
+    bottom: var(--offset);
+    width: 100%;
+    display: grid; 
+    place-content: center;
+    pointer-events: none;
+}
+
+.toast {
+    --duration: 4000ms;
+    /* pushes it down by the element's height + the space below */
+    --slide-down: translateY(calc(100% + var(--offset)));
+    transform: var(--slide-down);
+    transition: transform;
+    /* Slides up immediately, then delays for --duration, then slides down */
+    animation: toast_in 700ms forwards, toast_out 400ms var(--duration) forwards;
+
+    padding: 1rem;
+    margin: 0.25rem;
+    border-radius: 4px;
+    /*background-color: hsl(140, 80%, 80%);*/
+}
+
+@keyframes toast_in {
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes toast_out {
+    to {
+        transform: var(--slide-down);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+//in the bulma source I have commented out:
+// .media + .media
+@import "../bulma_source/bulma.sass";
+
+//https://bulma-calendar.onrender.com/
+@import "../calendar.sass";
