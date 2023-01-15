@@ -5,7 +5,7 @@
 
     defineProps<{
         // ...RouterLink.props,
-        to: string;
+        to: object | string;
         icon: string;
         linkText?: string;
         extraIconClasses?: string;

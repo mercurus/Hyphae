@@ -23,7 +23,7 @@
 </script>
 
 <template>
-    <router-link custom :to="'/topics/' + record.id" v-slot="{ href, navigate }">
+    <router-link custom :to="{name:'articleTopic', params:{id:record.id}}" v-slot="{ href, navigate }">
         <a @click="navigate" :href="href">
             <div class="media search-result">
                 <div class="media-left search-icon-block">

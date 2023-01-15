@@ -1,27 +1,20 @@
 <script lang="ts" setup>
-    import { defineProps, computed, getCurrentInstance } from "vue";
-    import { useRoute } from "vue-router";
+    import { defineProps } from "vue";
     import { useStoreMorph } from "@/stores/StoreMorph";
-    import BIcon from "@/components/BIcon.vue";
-    import Topic from "@/types/Topic";
     import { useStoreTopic } from "@/stores/StoreTopic";
+    import BIcon from "@/components/BIcon.vue";
+    // import Topic from "@/types/Topic";
+    // import { useRoute } from "vue-router";
     const storeMorph = useStoreMorph();
     const storeTopic = useStoreTopic();
 
+    const props = defineProps<{
+        id: string;
+    }>();
 
-    const topic = computed(() => {
-        // eslint-disable-next-line
-        return storeTopic.topics[useRoute().params.id];
-    });
-
-    const topicMorph = computed(() => {
-        return storeMorph.morphs[topic.value.morphId];
-    });
-
-    const computedIcon = computed(() => {
-        return topic.value.icon || topicMorph.value.icon || "question-circle";
-    });
-    
+    const topic = storeTopic.topics[props.id];
+    const topicMorph = storeMorph.morphs[topic.morphId];
+    const computedIcon = topic.icon || topicMorph.icon || "question-circle";
 </script>
 
 <template>

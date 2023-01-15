@@ -4,7 +4,7 @@
     import { useStoreMorph } from "@/stores/StoreMorph";
     import { useStoreTopic } from "@/stores/StoreTopic";
     import BIcon from "@/components/BIcon.vue";
-    import SearchResultTopic from "@/components/SearchResultTopic.vue";
+    import SearchResultCardTopic from "@/components/SearchResultCardTopic.vue";
     const storeMorph = useStoreMorph();
     const storeTopic = useStoreTopic();
     storeTopic.fetchTopics();
@@ -71,7 +71,7 @@
 
     <div class="columns is-multiline mt-3">
         <div v-for="topic in storeTopic.topics" :key="topic.id" class="column is-one-third py-0">
-            <SearchResultTopic :record="topic" />
+            <SearchResultCardTopic :record="topic" />
         </div>
     </div>
 
