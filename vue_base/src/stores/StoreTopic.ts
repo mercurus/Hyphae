@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import Morph from "@/types/Morph";
+import Topic from "@/types/Topic";
 
-export const useStoreMorph = defineStore("StoreMorph", {
+export const useStoreTopic = defineStore("StoreTopic", {
     state: () => {
         return {
-            morphs: {} as Record<number, Morph>,
+            topics: {} as Record<number, Topic>,
         }
     },
 
@@ -13,11 +13,11 @@ export const useStoreMorph = defineStore("StoreMorph", {
     },
 
     actions: {
-        async fetchMorphs() {
+        async fetchTopics() {
             try {
-                const response = await axios.get("/api/gnosis/list_morphs");
+                const response = await axios.get("/api/gnosis/list_topics");
                 for (const record of response.data.records) {
-                    this.morphs[record.id] = new Morph(record);
+                    this.topics[record.id] = new Topic(record);
                 }
             }
             catch (error) {

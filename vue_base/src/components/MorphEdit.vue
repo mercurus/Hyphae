@@ -51,7 +51,6 @@
         </div>
         <input type="hidden" name="json_data" :value="fields_as_json" />
     </form>
-    <slot>asdf</slot> <!-- CSRF token -->
 </template>
 
 <script>

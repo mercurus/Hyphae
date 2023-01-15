@@ -1,12 +1,12 @@
-<script setup>
-    import NavbarLink from "@/components/NavbarLink.vue";
+<script lang="ts" setup>
+    import TheNavbarLink from "@/components/TheNavbarLink.vue";
     import BIcon from "@/components/BIcon.vue";
 </script>
 
 <template>
     <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <NavbarLink
+            <TheNavbarLink
                 to="/"
                 icon="sun"
                 extraIconClasses="is-size-4"
@@ -21,13 +21,13 @@
         <div class="navbar-menu">
             <div class="navbar-start">
                 <span class="navbar-item has-text-accent has-text-weight-bold">/</span>
-                <NavbarLink
+                <TheNavbarLink
                     to="/topics"
                     linkText="TOPICS"
                     icon="globe"
                 />
                 <span class="navbar-item has-text-accent has-text-weight-bold">/</span>
-                <NavbarLink
+                <TheNavbarLink
                     to="/morphs"
                     linkText="MORPHS"
                     icon="puzzle-piece"

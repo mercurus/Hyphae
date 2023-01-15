@@ -6,10 +6,24 @@ from .models import *
 
 
 def list_morphs(request):
-    morphs = list(Morph.objects.all().values())
+    morphs = [{
+        'id': morph.id,
+        'name': morph.name,
+        'icon': morph.icon,
+        'template': morph.json_data,
+    } for morph in Morph.objects.all()]
     return JsonResponse({ 'records':morphs })
 
 
 def list_topics(request):
-    topics = list(Topic.objects.all().values())
+    topics = [{
+        'id': topic.id,
+        'name': topic.name,
+        'icon': topic.icon,
+        'jsonData': topic.json_data,
+        'morphId': topic.morph_id,
+        'userId': topic.user_id,
+        'createdById': topic.created_by_id,
+        'createdDate': topic.created_date,
+    } for topic in Topic.objects.all()]
     return JsonResponse({ 'records':topics })

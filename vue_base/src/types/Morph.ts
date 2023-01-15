@@ -10,9 +10,7 @@ export default class Morph {
         this.id = json.id;
         this.name = json.name;
         this.icon = json.icon;
-        this.template = {
-            fields: json.fields || [],
-        };
+        this.template = json.template;
     }
 }
 

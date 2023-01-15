@@ -1,9 +1,9 @@
 <script lang="ts" setup>
     import TheNavbar from "@/components/TheNavbar.vue";
-    import { useMorphStore } from "@/stores/StoreMorph";
+    import { useStoreMorph } from "@/stores/StoreMorph";
     // import { storeToRefs } from "pinia";
-    const morphStore = useMorphStore();
-    morphStore.fetchMorphs();
+    const storeMorph = useStoreMorph();
+    storeMorph.fetchMorphs();
 </script>
 
 <template>

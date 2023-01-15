@@ -3,13 +3,13 @@
     import BIcon from "@/components/BIcon.vue";
     // import { RouterLink } from "vue-router";
 
-    defineProps({
+    defineProps<{
         // ...RouterLink.props,
-        to: String,
-        linkText: String,
-        icon: String,
-        extraIconClasses: String,
-    })
+        to: string;
+        icon: string;
+        linkText?: string;
+        extraIconClasses?: string;
+    }>();
 </script>
 
 <template>
