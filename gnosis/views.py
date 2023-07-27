@@ -1,19 +1,15 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout, get_user
-from .models import Topic
+from django.http import JsonResponse
 
 
-def spa_entrance(request):
-    return render(request, 'hyphae_spa.html')
-
-
-@login_required
-def profile(request):
-    queryset = Topic.objects.filter(morph_id=2).select_related('morph')
-    folk = get_object_or_404(queryset, user=request.user)
-    context = {'folk': folk}
-    return render(request, 'conduct/profile.html', context)
+# @login_required
+# def profile(request):
+#     queryset = Topic.objects.filter(morph_id=2).select_related('morph')
+#     folk = get_object_or_404(queryset, user=request.user)
+#     context = {'folk': folk}
+#     return render(request, 'conduct/profile.html', context)
 
 
 def login_user(request):
@@ -37,4 +33,15 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('foyer:entrance')
+    return redirect('gnosis:spa_entrance')
+
+
+def spa_entrance(request):
+    return render(request, 'hyphae_spa.html')
+
+
+def catchall(request, url):
+    if request.method == 'GET':
+        return redirect('gnosis:spa_entrance')
+    return JsonResponse({'message':'no'}, status=404)
+

@@ -5,7 +5,7 @@
         "fields": {
             "name": "Something",
             "icon": "question-circle",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -13,7 +13,7 @@
         "fields": {
             "name": "Person",
             "icon": "user",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -21,7 +21,7 @@
         "fields": {
             "name": "Guild",
             "icon": "users",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -29,7 +29,7 @@
         "fields": {
             "name": "Organism",
             "icon": "crow",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -37,7 +37,7 @@
         "fields": {
             "name": "Plant",
             "icon": "seedling",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -45,7 +45,7 @@
         "fields": {
             "name": "Chemical",
             "icon": "atom",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -53,7 +53,7 @@
         "fields": {
             "name": "Phenomenon",
             "icon": "cloud-moon",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -61,7 +61,7 @@
         "fields": {
             "name": "Practice",
             "icon": "heartbeat",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -69,7 +69,7 @@
         "fields": {
             "name": "Idea",
             "icon": "lightbulb",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -77,7 +77,7 @@
         "fields": {
             "name": "Tool",
             "icon": "tools",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -85,7 +85,7 @@
         "fields": {
             "name": "Book",
             "icon": "book",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     },{
         "model": "gnosis.morph",
@@ -93,7 +93,7 @@
         "fields": {
             "name": "Nutrient",
             "icon": "carrot",
-            "json_data": {}
+            "json_data": {"fields":[]}
         }
     }
 ]

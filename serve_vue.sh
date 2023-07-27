@@ -1,2 +1,2 @@
-cd vue_base/
+cd vue_frontend/
 npm run serve

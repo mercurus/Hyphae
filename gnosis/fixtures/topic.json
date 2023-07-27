@@ -103,7 +103,7 @@
         "model": "gnosis.topic",
         "pk": 11,
         "fields": {
-            "name": "Community Supported Agriculture (CSA)",
+            "name": "Community Supported Agriculture",
             "icon": "",
             "morph_id": 8,
             "json_data": {},
@@ -383,7 +383,7 @@
         "model": "gnosis.topic",
         "pk": 39,
         "fields": {
-            "name": "Betty Kovacs",
+            "name": "Bruce Damer",
             "icon": "",
             "morph_id": 2,
             "json_data": {},
@@ -393,7 +393,7 @@
         "model": "gnosis.topic",
         "pk": 40,
         "fields": {
-            "name": "Bruce Damer",
+            "name": "Erik Davis",
             "icon": "",
             "morph_id": 2,
             "json_data": {},
@@ -403,7 +403,7 @@
         "model": "gnosis.topic",
         "pk": 41,
         "fields": {
-            "name": "Dennis McKenna",
+            "name": "Frances Yates",
             "icon": "",
             "morph_id": 2,
             "json_data": {},
@@ -413,7 +413,7 @@
         "model": "gnosis.topic",
         "pk": 42,
         "fields": {
-            "name": "Erik Davis",
+            "name": "Gary Lachman",
             "icon": "",
             "morph_id": 2,
             "json_data": {},
@@ -423,7 +423,7 @@
         "model": "gnosis.topic",
         "pk": 43,
         "fields": {
-            "name": "Gary Lachman",
+            "name": "Iain McGilchrist",
             "icon": "",
             "morph_id": 2,
             "json_data": {},
@@ -483,7 +483,7 @@
         "model": "gnosis.topic",
         "pk": 49,
         "fields": {
-            "name": "Marjorie Woollacott",
+            "name": "Marilyn Monk",
             "icon": "",
             "morph_id": 2,
             "json_data": {},

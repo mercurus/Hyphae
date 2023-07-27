@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");
 @import url("https://fonts.googleapis.com/css?family=Righteous");
 
-// these colors are now set by the theme which then imports this file
+// these colors are set by the theme which then imports this file
 // $main-dark
 // $main
 // $main-light
@@ -159,7 +159,7 @@ $nav-speed: 600ms;
     letter-spacing: 1.5px;
 }
 
-//footer stuff
+// (sticky) footer
 
 body {
     display: flex;
@@ -167,7 +167,7 @@ body {
     flex-direction: column;
 }
 
-.sticky_footer_wrapper {
+.sticky-footer-wrapper {
     flex: 1;
 }
 
@@ -200,51 +200,6 @@ body {
 }
 
 
-/* https://codepen.io/oliverjam/pen/KKzWJQM */
-#toaster {
-    --offset: 2rem;
-    position: fixed;
-    left: 0;
-    bottom: var(--offset);
-    width: 100%;
-    display: grid; 
-    place-content: center;
-    pointer-events: none;
-}
-
-.toast {
-    --duration: 4000ms;
-    /* pushes it down by the element's height + the space below */
-    --slide-down: translateY(calc(100% + var(--offset)));
-    transform: var(--slide-down);
-    transition: transform;
-    /* Slides up immediately, then delays for --duration, then slides down */
-    animation: toast_in 700ms forwards, toast_out 400ms var(--duration) forwards;
-
-    padding: 1rem;
-    margin: 0.25rem;
-    border-radius: 4px;
-    /*background-color: hsl(140, 80%, 80%);*/
-}
-
-@keyframes toast_in {
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes toast_out {
-    to {
-        transform: var(--slide-down);
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-
-//in the bulma source I have commented out:
-// .media + .media
 @import "../bulma_source/bulma.sass";
-
 //https://bulma-calendar.onrender.com/
 @import "../calendar.sass";

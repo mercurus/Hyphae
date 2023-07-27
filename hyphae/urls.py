@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gnosis.urls import views
 
 urlpatterns = [
     path('django_admin/', admin.site.urls),
-    path('', views.spa_entrance, name='spa_entrance'),
-    path('user/', include('conduct.urls')),
-    path('api/gnosis/', include('gnosis.urls')),
+    path('api/gnosis/', include('gnosis.api_urls')),
+    path('', include('gnosis.urls')),
+    # path('user/', include('conduct.urls')),
 ]

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-from .secrets import *
+from .secrets import * #TODO put in env variables
 
 
 # Quick-start development settings - unsuitable for production
@@ -20,13 +20,13 @@ DEBUG = True # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
-# Application definition
-
-
 INSTALLED_APPS = [
     'conduct.apps.ConductConfig',
     'gnosis.apps.GnosisConfig',
-    'webpack_loader', #https://medium.com/js-dojo/vue-django-best-of-both-frontends-701307871478
+    'rest_framework', # https://github.com/encode/django-rest-framework
+    # "rest_framework.authtoken", # https://medium.com/geekculture/register-login-and-logout-users-in-django-rest-framework-51486390c29
+    # 'drf_multiple_model', # https://github.com/MattBroach/DjangoRestMultipleModels
+    'webpack_loader', # https://medium.com/js-dojo/vue-django-best-of-both-frontends-701307871478
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
 
 
 #https://python-social-auth.readthedocs.io/en/latest/configuration/settings.html#application-setup
@@ -81,7 +83,6 @@ TEMPLATES = [{
             'django.template.context_processors.request',
             'django.contrib.auth.context_processors.auth',
             'django.contrib.messages.context_processors.messages',
-            'conduct.utilities.template_variables_context',
             # 'social_django.context_processors.backends',
             # 'social_django.context_processors.login_redirect',
         ],
@@ -115,7 +116,7 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        #'TIMEOUT': 60 * 60 * 2, #2 hours
+        'TIMEOUT': 60 * 60 * 1, #1 hour
     }
 }
 
@@ -138,13 +139,29 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# LOGGING = {
-#   'loggers': {
-#       'django.db.backends': {
-#           'level': 'DEBUG',
-#       },
-#   },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propogate': False,
+        }
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        # },
+    },
+}
 
 
 # Internationalization
@@ -162,13 +179,36 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 # STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
 
-VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_base')
+SESSION_COOKIE_AGE = 60 * 60 * 2 #60 seconds * 60 minutes * 2 hours
+SESSION_SAVE_EVERY_REQUEST = True
+CSRF_USE_SESSIONS = True
+# CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_HTTPONLY = True
+# CSRF_TRUSTED_ORIGINS = ['localhost', '127.0.0.1']
+# AUTH_USER_MODEL='UserManagement.Users'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        # Use Django's standard `django.contrib.auth` permissions,
+        # or allow read-only access for unauthenticated users.
+        'rest_framework.permissions.IsAuthenticated'
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication'
+        # 'rest_framework.authentication.TokenAuthentication'
+    ]
+}
+
+
+VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
 
 WEBPACK_LOADER = {
     'DEFAULT': {
